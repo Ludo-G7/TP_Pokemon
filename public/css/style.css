@@ -1,0 +1,18 @@
+a{
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 3em;
+    text-decoration: none;
+    font-variant-ligatures: contextual;
+
+}
+
+.attraper{
+    margin: auto;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+footer{
+    text-align: center;
+    border-top: 1px solid gray;
+}
