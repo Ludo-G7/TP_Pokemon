@@ -1,10 +1,66 @@
 {% extends 'base.html.twig' %}
 
+
+{% block title %}{{ parent() }} | pokedex {% endblock %}
+
+{% block header %}
+    <nav>
+        <ul>
+            <a class="titre" href="{{ path('main_home') }}"><img src="{{ asset('img/pokemon/pokemon_logo.svg.png')}}" width="300" height="100" alt="logo"></a>
+        </ul>
+    </nav>
+{% endblock %}
+
 {% block body %}
 
+        <div class="lien_btn">
+            <a class="lien_btn1" href="{{ path('main_search_capture') }}">  Trier par pokémon capturé  </a>
+            <a class="lien_btn2" href="{{ path('main_search_nom') }}">  Trier par nom  </a>
+        </div>
+
+        <section class="sectPokemon">
+            {% for p in poke %}
+                <article class="artPokemon">
+
+                    <div class="global">
+                        <div class="enTete">
+                            <h3>{{ p.name }}</h3>
+                        </div>
+                        <div class="icon">
+                            {% if (p.is_captured == 0) %}
+                                <a href="#">
+                                    <img src="{{ asset('img/icon/pokeball-ok.png') }}" width="50" height="50" alt="icon">
+                                </a>
+                            {% elseif (p.is_captured == 1)%}
+                                <a href="#">
+                                    <img src="{{ asset('img/icon/pokeball-ko.png') }}" width="50" height="50" alt="icon">
+                                </a>
+                            {% endif%}
+                        </div>
+                    </div>
+
+                    <div class="photo_poke">
+                        <a href="{{ path('main_details', {'id': p.id}) }}">
+                            <img src="{{ asset('img/pokemon/'~p.image) }}" width="350" height="350" alt="{{ p.name }}">
+                        </a>
+                    </div>
+
+                    <div class="btn_capturer">
+                        <a href="#">Capturer</a>
+                    </div>
+
+                </article>
+            {% endfor %}
+        </section>
 {% endblock %}
 
-{% block title %}
-
+{% block footer %}
+    <div class="footer">
+        {{ "now" | date('Y') }} &copy;Pokemon
+    </div>
 {% endblock %}
+
+
+
+
 

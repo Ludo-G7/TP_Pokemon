@@ -8,14 +8,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="icon" href="{{ asset('img/pokeball-ok') }}">
+    <link rel="icon" href="{{ asset('img/icon/pokeball-ok.jpg') }}">
     <title>{% block title %}Pokemon{% endblock %}</title>
 </head>
 <body>
 
     <header>
-        {% include 'inc/nav.html.twig' %}
+        {% block header%}{% endblock %}
     </header>
 
     <main>
@@ -23,7 +28,7 @@
     </main>
 
     <footer>
-        {{ "now" | date('Y') }} &copy;Bucket-List
+        {% block footer %}{% endblock %}
     </footer>
 
 </body>

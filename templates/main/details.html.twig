@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | {{ detailPok.name }}{% endblock %}
+
+{% block header %}
+        <nav>
+            <ul>
+                <a class="titre" href="{{ path('main_home') }}"><img src="{{ asset('img/pokemon/pokemon_logo.svg.png')}}" width="300" height="100" alt="logo"></a>
+            </ul>
+        </nav>
+{% endblock %}
+
+{% block body %}
+    <section class="detailPok">
+
+        <h2>{{ detailPok.name }}</h2>
+
+        <div><img src="{{ asset('img/pokemon/'~detailPok.image) }}" width="350" height="350" alt="{{ detailPok.name }}"></div>
+
+        <div class="description" >{{ detailPok.description }}</div>
+
+        <div class="Att-def">Attaque : {{ detailPok.attaque }}</div><br>
+        <div class="Att-def">Defense : {{ detailPok.defense }}</div>
+
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <div class="footer">
+        {{ "now" | date('Y') }} &copy;Pokemon
+    </div>
+{% endblock %}
+
