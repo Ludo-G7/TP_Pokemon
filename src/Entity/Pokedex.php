@@ -85,12 +85,12 @@ class Pokedex
         return $this;
     }
 
-    public function isis_captured(): ?bool
+    public function isIs_captured(): ?bool
     {
         return $this->is_captured;
     }
 
-    public function setis_captured(bool $is_captured): self
+    public function setIs_captured(bool $is_captured): self
     {
         $this->is_captured = $is_captured;
 

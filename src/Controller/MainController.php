@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Pokedex;
+use App\Form\PokedexType;
 use App\Repository\PokedexRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,7 +43,7 @@ class MainController extends AbstractController
             ]);
     }
 
-    #[Route('/recherche', name:'main_search_capture')]
+    #[Route('/recherche/capture', name:'main_search_capture')]
     public function rechercheByCapture(PokedexRepository $pokedexRepository):Response
     {
         $rechercheByCapture = $pokedexRepository->findBy(['is_captured'=>1], []);
@@ -51,7 +55,7 @@ class MainController extends AbstractController
         );
     }
 
-    #[Route('/recherche2', name:'main_search_nom')]
+    #[Route('/recherche/nom', name:'main_search_nom')]
     public function rechercheByNom(PokedexRepository $pokedexRepository):Response
     {
         $rechercheByNom = $pokedexRepository->findBy([], ['name'=>'ASC']);
@@ -63,19 +67,39 @@ class MainController extends AbstractController
         );
     }
 
-    /*
-    #[Route('/capture', name:'main_capture')]
-    public function capture(PokedexRepository $pokedexRepository):Response
-    {
-        $capture = $pokedexRepository->;
+    #[Route('/Ajout', name:'main_ajout')]
+    public function ajout(Request $request, EntityManagerInterface $entityManager){
+        $pokemon = new Pokedex();
+        $pokemonForm = $this->createForm(PokedexType::class, $pokemon);
+        dump($pokemon);
+        $pokemonForm->handleRequest($request);
 
-        return $this -> render('main/pokedex.html.twig',
-            [
-                'poke' => $rechercheByNom
-            ]
-        );
+        if($pokemonForm->isSubmitted() && $pokemonForm->isValid()){
+            $pokemon->setis_captured(false);
+            $entityManager->persist($pokemon);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Pokemon Ajouté !!!');
+            return $this->redirectToRoute('main_details', ['id'=>$pokemon->getId()]);
+        }
+
+        return $this->render('main/ajout.html.twig', [
+            'pokemonform' => $pokemonForm->createView()
+        ]);
     }
-*/
+
+
+    #[Route('/capture/{id}', name:'main_capture')]
+    public function capture(int $id, EntityManagerInterface $entityManager, PokedexRepository $pokedexRepository ):Response
+    {
+        $pokemon = $pokedexRepository->find($id);
+        $pokemon ->setIs_captured(!$pokemon->isIs_captured());
+        /*$pokemon->setis_captured(!$pokemon->isis_captured());*/
+        $entityManager->persist($pokemon);
+        $entityManager->flush();
+        return $this -> redirectToRoute('main_pokedex');
+    }
+
 
 
 }

@@ -3,18 +3,25 @@
 
 {% block title %}{{ parent() }} | pokedex {% endblock %}
 
+
 {% block header %}
-    <nav>
+    <nav aria-label="navbar" class="navbar">
         <ul>
-            <a class="titre" href="{{ path('main_home') }}"><img src="{{ asset('img/pokemon/pokemon_logo.svg.png')}}" width="300" height="100" alt="logo"></a>
+            <li><a href="{{ path('main_home') }}">Accueil</a></li>
+            <li><a href="{{ path('main_pokedex') }}">Pokedex</a></li>
+            <li><a href="{{ path('main_ajout') }}">Ajout Pokemon</a></li>
         </ul>
     </nav>
+    <div class="logoPokemon">
+        <a href="{{ path('main_home') }}"><img src="{{ asset('img/pokemon/pokemon_logo.svg.png')}}" width="250" height="80" alt="logo"></a>
+    </div>
 {% endblock %}
+
 
 {% block body %}
 
         <div class="lien_btn">
-            <a class="lien_btn1" href="{{ path('main_search_capture') }}">  Trier par pokémon capturé  </a>
+            <a class="lien_btn1" href="{{ path('main_search_capture') }}">  Trier par pokemon capturé  </a>
             <a class="lien_btn2" href="{{ path('main_search_nom') }}">  Trier par nom  </a>
         </div>
 
@@ -23,20 +30,23 @@
                 <article class="artPokemon">
 
                     <div class="global">
+
                         <div class="enTete">
                             <h3>{{ p.name }}</h3>
                         </div>
+
                         <div class="icon">
-                            {% if (p.is_captured == 0) %}
+                            {% if (p.is_captured == 1) %}
                                 <a href="#">
                                     <img src="{{ asset('img/icon/pokeball-ok.png') }}" width="50" height="50" alt="icon">
                                 </a>
-                            {% elseif (p.is_captured == 1)%}
+                            {% elseif (p.is_captured == 0)%}
                                 <a href="#">
                                     <img src="{{ asset('img/icon/pokeball-ko.png') }}" width="50" height="50" alt="icon">
                                 </a>
                             {% endif%}
                         </div>
+
                     </div>
 
                     <div class="photo_poke">
@@ -46,7 +56,11 @@
                     </div>
 
                     <div class="btn_capturer">
-                        <a href="#">Capturer</a>
+                        {% if (p.is_captured == 1) %}
+                             <a href="{{ path('main_capture', {'id':p.id}) }}">Relâcher</a>
+                        {% else  %}
+                            <a href="{{ path('main_capture', {'id':p.id}) }}">Capturer</a>
+                        {% endif%}
                     </div>
 
                 </article>

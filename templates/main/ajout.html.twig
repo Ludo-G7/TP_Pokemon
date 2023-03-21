@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Create a new pokemon | {{ parent() }}
+{% endblock %}
+
+
+{% block header %}
+    <nav aria-label="navbar" class="navbar">
+        <ul>
+            <li><a href="{{ path('main_home') }}">Accueil</a></li>
+            <li><a href="{{ path('main_pokedex') }}">Pokedex</a></li>
+            <li><a href="{{ path('main_ajout') }}">Ajout Pokemon</a></li>
+            <li><span aria-current="page"></span></li>
+        </ul>
+    </nav>
+    <div class="logoPokemon">
+        <a href="{{ path('main_home') }}"><img src="{{ asset('img/pokemon/pokemon_logo.svg.png')}}" width="250" height="80" alt="logo"></a>
+    </div>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="formulaire">
+
+        {{ form_start(pokemonform) }}
+
+        {{ form_widget(pokemonform) }}
+
+        <button>Envoyer</button>
+        {{ form_end(pokemonform) }}
+
+    </div>
+
+
+{% endblock %}
+
+
+

@@ -2,13 +2,23 @@
 
 {% block title %}{{ parent() }} | {{ detailPok.name }}{% endblock %}
 
+
+
 {% block header %}
-        <nav>
-            <ul>
-                <a class="titre" href="{{ path('main_home') }}"><img src="{{ asset('img/pokemon/pokemon_logo.svg.png')}}" width="300" height="100" alt="logo"></a>
-            </ul>
-        </nav>
+    <nav aria-label="navbar" class="navbar">
+        <ul>
+            <li><a href="{{ path('main_home') }}">Accueil</a></li>
+            <li><a href="{{ path('main_pokedex') }}">Pokedex</a></li>
+            <li><span aria-current="page">{{ detailPok.name }}</span></li>
+            <li><a href="{{ path('main_ajout') }}">Ajout Pokemon</a></li>
+        </ul>
+    </nav>
+    <div class="logoPokemon">
+        <a href="{{ path('main_home') }}"><img src="{{ asset('img/pokemon/pokemon_logo.svg.png')}}" width="250" height="80" alt="logo"></a>
+    </div>
 {% endblock %}
+
+
 
 {% block body %}
     <section class="detailPok">

@@ -4,6 +4,42 @@
     text-decoration: none;
 }
 
+.navbar {
+    padding: 0 .5rem;
+    margin:20px;
+}
+
+.navbar ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li:not(:last-child)::after {
+    display: inline-block;
+    margin: 0 .25rem;
+    content: " | ";
+}
+
+.navbar li{
+    font-size: 1.5em;
+    font-family: 'Rubik', sans-serif;
+    color:#2a75bb;
+    text-decoration: none;
+}
+
+.imgLogo{
+    width: 100vw;
+}
+
+.logoPokemon{
+    position: absolute;
+    right:10px;
+    top:10px;
+}
 
 .attraper{
     margin: auto;
@@ -37,10 +73,11 @@
     display: flex;
 }
 
-.enTete{
+.enTete, h3{
     margin-left:auto;
     margin-right: auto;
     text-align: center;
+    color: #ffcb05;
 }
 .icon{
     margin-top: 10px;
@@ -55,7 +92,7 @@
     margin-bottom: 25px;
     width: 200px;
     font-size: 1em;
-    background-color: darkslategrey;
+    background-color: #3c5aa6;
     border-radius: 10px;
     text-align: center;
 }
@@ -96,7 +133,7 @@
 
 .lien_btn{
     display: flex;
-    margin:20px;
+    margin:50px;
     justify-content: center;
     align-items: center;
     height: 50px;
@@ -105,6 +142,7 @@
 .lien_btn1{
     font-size: 1em;
     width: 250px;
+    height: 30px;
     margin-right: 100px;
     border: 1px solid lightgrey;
     border-radius: 10px;
@@ -113,11 +151,13 @@
     font-family: 'Rubik', sans-serif;
     text-decoration: none;
     text-align: center;
+    line-height: 30px;
 }
 
 .lien_btn2{
     font-size: 1em;
     width: 200px;
+    height: 30px;
     border: 1px solid lightgrey;
     border-radius: 10px;
     color:#3b82f6;
@@ -125,6 +165,7 @@
     font-family: 'Rubik', sans-serif;
     text-decoration: none;
     text-align: center;
+    line-height: 30px;
 }
 
 .lien_btn1:hover{
@@ -137,7 +178,17 @@
     border: 1px solid #3b82f6;
 }
 
+.formulaire{
 
+    display: flex;
+    justify-content: center;
+    margin: 200px 100px;
+    height: 500px;
+    font-family: 'Rubik', sans-serif;
+    background-color: #3b82f6;
+    border-radius: 10px;
+    font-size: 1.5em;
+}
 
 .footer{
     text-align: center;
